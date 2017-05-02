@@ -9,7 +9,9 @@ def createSSHClient(server, port, user, password):
     client.connect(server, port, user, password)
     return client
 
-ssh = createSSHClient('192.168.1.110', 22, 'server', 'password') #createSSHClient(server, port, user, password)
+cwd = os.getcwd()#get filepath the script is running from
+
+ssh = createSSHClient('192.168.1.110', 22, 'server', 'password')#createSSHClient(server, port, user, password)
 scp = SCPClient(ssh.get_transport())
 
-scp.get("/home/server/Documents/test_file.txt" , "E:\\Documents\\Programming\\Python\\")
+scp.get("/home/server/Documents/test_file.txt" , cwd)#scp(server file path, current working directory)
